@@ -20,4 +20,8 @@ class Product extends Model
     public function active_status(){
         return $this->belongsTo(Active_status::class);
     }
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
