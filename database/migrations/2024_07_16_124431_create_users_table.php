@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('active_status_id');
+            $table->foreignId('rank_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -26,6 +27,10 @@ return new class extends Migration
             // Set foreign key constraints
             $table->foreign('active_status_id', 'fk_users_active_status')
                 ->references('id')->on('active_statuses')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('rank_id', 'fk_users_rank')
+                ->references('id')->on('ranks')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

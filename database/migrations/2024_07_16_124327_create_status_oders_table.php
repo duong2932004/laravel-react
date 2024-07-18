@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('status_oders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('name',['preparing goods','are delivering','delivered']);
             $table->timestamps();
         });
     }

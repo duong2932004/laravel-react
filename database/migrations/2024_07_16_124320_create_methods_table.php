@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('methods', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('name',['payment on delivery','vnpay']);
             $table->timestamps();
         });
     }

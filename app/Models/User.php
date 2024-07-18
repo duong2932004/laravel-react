@@ -10,6 +10,7 @@ class User extends Model
     use HasFactory;
     protected $fillable = [
         'active_status_id',
+        'rank_id',
         'name',
         'email',
         'email_verified_at',
@@ -19,5 +20,8 @@ class User extends Model
     ];
     public function active_status(){
         return $this->belongsTo(Active_status::class);
+    }
+    public function rank(){
+        return $this->belongsTo(Rank::class);
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('active_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('name',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     // Product Routes
 //    Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 //    Route::get('/products/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
@@ -23,6 +23,27 @@ Route::middleware('auth:sanctum')->group(function () {
 //    Route::put('/products/{product}', [\App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
 //    Route::delete('/products/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
 });
+// admin
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AuthController::class, 'index']);
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+
+Route::get('/',function (){
+    return view('index');
+});
+
 
 // Non-authenticated routes
 Route::get('/login', function () {
@@ -36,3 +57,8 @@ Route::get('/register', function () {
 
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+
+Route::get('/',function (){
+    return view('index');
+});
+
